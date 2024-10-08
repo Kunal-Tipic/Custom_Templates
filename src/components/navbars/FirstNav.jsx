@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faChevronDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
@@ -9,10 +9,22 @@ const FirstNav = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+  const dropdownRef = useRef(null);
+
+  // Function to close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [dropdownRef]);
 
   return (
-    <nav className="bg-black text-white shadow-md w-full z-10">
+    <nav className="bg-black sticky top-0 text-white shadow-md w-full z-10">
       {/* Navbar Container */}
       <div className="flex justify-between items-center px-4 py-3 md:h-14">
         {/* Logo Section */}
@@ -22,43 +34,25 @@ const FirstNav = () => {
         </div>
 
         <div className="hidden md:flex space-x-6 items-center">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? 'bg-green-700 rounded px-3 py-2' : 'hover:bg-green-700 rounded px-3 py-2'
-            }
-          >
+          <NavLink to="/" className={({ isActive }) =>
+              isActive ? 'bg-green-700 rounded px-3 py-2' : 'hover:bg-green-700 rounded px-3 py-2'}>
             Home
           </NavLink>
 
           {/* About Dropdown */}
-          <div
-            className="relative group"
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
-          >
-            <button
-              onClick={toggleDropdown}
-              className="flex items-center space-x-1 hover:bg-green-700 rounded px-3 py-2"
-            >
-              <span>About</span>
-              <FontAwesomeIcon icon={faChevronDown} className="h-3 ms-1" />
+          <div className="relative" ref={dropdownRef}>
+            <button onClick={() => setDropdownOpen(!isDropdownOpen)} className="flex items-center space-x-1 hover:bg-green-700 rounded px-3 py-2">
+              <span>About</span><FontAwesomeIcon icon={faChevronDown} className="h-3 ms-1" />
             </button>
             {isDropdownOpen && (
               <ul className="absolute left-0 top-10 bg-black text-white rounded shadow-lg p-2 mt-1 space-y-1">
                 <li>
-                  <NavLink
-                    to="/about/directors"
-                    className="block px-4 py-2 hover:bg-green-700 rounded"
-                  >
+                  <NavLink to="/about/directors"className="block px-4 py-2 hover:bg-green-700 rounded"onClick={() => setDropdownOpen(false)} >
                     Directors
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    to="/about/company"
-                    className="block px-4 py-2 hover:bg-green-700 rounded"
-                  >
+                  <NavLink to="/about/company"className="block px-4 py-2 hover:bg-green-700 rounded"onClick={() => setDropdownOpen(false)} >
                     Company
                   </NavLink>
                 </li>
@@ -95,37 +89,36 @@ const FirstNav = () => {
 
       {/* Mobile Menu */}
       <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} pb-4 bg-black`}>
-        <NavLink
-          to="/"
-          className="block px-4 py-2 hover:bg-green-700 rounded"
-          onClick={() => setIsOpen(false)}
-        >
+        <NavLink to="/" className="block px-4 py-2 hover:bg-green-700 rounded"
+          onClick={() => setIsOpen(false)}>
           Home
         </NavLink>
         <div>
           <button
             className="flex justify-between items-center px-4 py-2 w-full hover:bg-green-700"
-            onClick={toggleDropdown}
+            // onClick={toggleDropdown}
+            onClick={() => setDropdownOpen(!isDropdownOpen)}
           >
             About
             <FontAwesomeIcon icon={faChevronDown} className="h-4" />
+            
           </button>
           {isDropdownOpen && (
             <ul className="pl-4">
               <li>
                 <NavLink
-                  // to="/about/directors"
+                  to="/about/directors"
                   className="block px-4 py-2 hover:bg-green-700 rounded"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setDropdownOpen(false)} 
                 >
                   Directors
                 </NavLink>
               </li>
               <li>
                 <NavLink
-                  // to="/about/company"
+                  to="/about/company"
                   className="block px-4 py-2 hover:bg-green-700 rounded"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setDropdownOpen(false)} 
                 >
                   Company
                 </NavLink>

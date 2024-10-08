@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function EducationNav() {
   return (
-    <nav className="bg-blue-900 text-white px-10 py-3 flex justify-between items-center">
+    <nav className="sticky top-0 bg-blue-900 text-white px-10 py-3 flex justify-between items-center">
     <div className="text-2xl font-bold text-yellow-300">EduLearn</div>
     <ul className="flex space-x-6">
       <li><NavLink to="#" className="hover:text-yellow-200">Courses</NavLink></li>

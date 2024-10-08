@@ -1,13 +1,10 @@
 import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
-import About from './pages/AboutUs';
-import Services from './pages/Services';
-import Contact from './pages/ContactUs';
-import Homepage from './pages/Homepage';
+import Homepage from './pages/firstNavPages/Homepage';
+import Services from './pages/firstNavPages/Services';
+import AboutUs from './pages/firstNavPages/AboutUs';
+import ContactUs from './pages/firstNavPages/ContactUs';
 import FirstNav from './components/navbars/FirstNav';
-import SecondNav from './components/navbars/SecondNav';
-import SecondNavHome from './pages/secondNavPages/SecondNavHome';
-import SecondNavAbout from './pages/secondNavPages/SecondNavAbout';
 import ShoppingNav from './components/navbars/ShoppingNav';
 import ShoppingHome from './pages/shopping/ShoppingHome';
 import EducationNav from './components/navbars/EducationNav';
@@ -22,6 +19,8 @@ import NewsNav from './components/navbars/NewsNav';
 import NewsHome from './pages/news/NewsHome';
 import PortfolioNav from './components/navbars/PortfolioNav';
 import PortfolioHome from './pages/portfolio/PortfolioHome';
+import AllNav from './components/navbars/AllNav';
+
 
 
 const AppRoutes = () => {
@@ -30,13 +29,9 @@ const AppRoutes = () => {
       <Routes>
         {/* First Navbar Routes */}
         <Route path="/" element={<><FirstNav /><Homepage/></>} />
-        <Route path="/about" element={<><FirstNav /><About/></>} />
+        <Route path="/about" element={<><FirstNav /><AboutUs/></>} />
         <Route path="/services" element={<><FirstNav /><Services/></>} />
-        <Route path="/contact" element={<><FirstNav /><Contact/></>} />
-
-        {/* Second Navbar Routes */}
-        <Route path="/secondnavhomes" element={<><SecondNav /><SecondNavHome/></>} />
-        <Route path="/secondnavabout" element={<><SecondNav /><SecondNavAbout/></>} />
+        <Route path="/contact" element={<><FirstNav /><ContactUs/></>} />
 
         {/* shoping navbar */}
         <Route path='/shoppingHome' element={<><ShoppingNav/><ShoppingHome/></>}/>
@@ -46,6 +41,7 @@ const AppRoutes = () => {
 
         {/* chocolate navbar */}
         <Route path='/chocolatehome' element={<><ChocolateNav/><ChocolateHome/></>}/>
+      
 
         {/* tech company  */}
         <Route path='/techcompanyhome' element={<><TechCompanyNav/><TechCompanyHome/></>}/>
@@ -58,6 +54,10 @@ const AppRoutes = () => {
 
         {/* portfolio home */}
         <Route path='/portfoliohome' element={<><PortfolioNav/><PortfolioHome/></>}/>
+
+        {/* Second Navbar Routes */}
+        <Route path="/allnav" element={<AllNav/>} />
+
       </Routes>
     </HashRouter>
   );

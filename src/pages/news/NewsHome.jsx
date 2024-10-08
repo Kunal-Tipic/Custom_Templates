@@ -1,9 +1,11 @@
 import React from 'react'
+import NewsFooter from '../../components/footer/NewsFooter'
 
 export default function NewsHome() {
   return (
     <div>
-      This is News Home
+      <div className="mb-96">This is News Home</div>
+      <NewsFooter/>
     </div>
   )
 }

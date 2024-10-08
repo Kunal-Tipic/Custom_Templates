@@ -11,7 +11,7 @@ export default function NewsNav() {
   <li><NavLink to="#" className="hover:text-gray-200">Politics</NavLink></li>
   <li><NavLink to="#" className="hover:text-gray-200">Business</NavLink></li>
   <li><NavLink to="#" className="hover:text-gray-200">Technology</NavLink></li>
-  <li><NavLink to="/portfoliohome" className="hover:text-gray-200">Portfolio Nav</NavLink></li>
+  <li><NavLink to="/portfoliohome" target="_blank"className="hover:text-gray-200">Portfolio Nav</NavLink></li>
 </ul>
 <button className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-md">
   Subscribe
