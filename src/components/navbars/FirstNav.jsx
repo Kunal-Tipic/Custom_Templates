@@ -18,7 +18,6 @@ const FirstNav = () => {
         setDropdownOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [dropdownRef]);
@@ -47,7 +46,7 @@ const FirstNav = () => {
             {isDropdownOpen && (
               <ul className="absolute left-0 top-10 bg-black text-white rounded shadow-lg p-2 mt-1 space-y-1">
                 <li>
-                  <NavLink to="/about/directors"className="block px-4 py-2 hover:bg-green-700 rounded"onClick={() => setDropdownOpen(false)} >
+                  <NavLink to="/about"className="block px-4 py-2 hover:bg-green-700 rounded"onClick={() => setDropdownOpen(false)} >
                     Directors
                   </NavLink>
                 </li>

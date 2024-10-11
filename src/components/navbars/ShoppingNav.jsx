@@ -21,7 +21,7 @@ export default function ShoppingNav() {
   }, [dropdownRef]);
 
   return (
-    <nav className="sticky top-0  bg-gray-800 text-white px-4 py-2 ">
+    <nav className="sticky top-0  bg-gray-800 text-white px-4 py-2 z-10">
       <div className="flex w-full justify-between items-center px-4 py-3 md:h-14">
         {/* logo section       */}
         <div className="text-xl font-bold">
@@ -59,10 +59,7 @@ export default function ShoppingNav() {
             )}
           </div>
 
-          <NavLink to="#" className="block px-4 py-2 hover:text-gray-400">
-            Deals
-          </NavLink>
-          <NavLink to="#" className="block px-4 py-2 hover:text-gray-400">
+          <NavLink to="/shoppingcontact" className="block px-4 py-2 hover:text-gray-400">
             Contact Us
           </NavLink>
             
